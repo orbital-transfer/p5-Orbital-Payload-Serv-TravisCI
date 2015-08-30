@@ -16,5 +16,13 @@ sub _build_client {
 	Net::Travis::API::Auth::GitHub->get_authorised_ua_for( $self->github_token );
 }
 
+sub accounts {
+	my ($self) = @_;
+	$self->client->get('/accounts', {
+			headers => {
+					Accept => "application/json; chunked=true; version=2, application/json; version=2"
+				},
+		});
+}
 
 1;
