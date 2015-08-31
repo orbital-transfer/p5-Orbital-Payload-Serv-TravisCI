@@ -16,6 +16,11 @@ sub _build_client {
 	Net::Travis::API::Auth::GitHub->get_authorised_ua_for( $self->github_token );
 }
 
+sub sync_with_github {
+	my ($self) = @_;
+	$self->client->post('/users/sync');
+}
+
 sub accounts {
 	my ($self) = @_;
 	$self->client->get('/accounts', {
