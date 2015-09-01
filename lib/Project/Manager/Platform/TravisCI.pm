@@ -30,4 +30,9 @@ sub accounts {
 		});
 }
 
+sub repos_for_user {
+	my ($self) = @_;
+	$self->client->get('/users');
+}
+
 1;
