@@ -13,7 +13,9 @@ has github_token => ( is => 'ro', required => 1 );
 
 sub _build_client {
 	my ($self) = @_;
-	Net::Travis::API::Auth::GitHub->get_authorised_ua_for( $self->github_token );
+	my $ua = Net::Travis::API::Auth::GitHub->get_authorised_ua_for( $self->github_token );
+	$ua->{default_headers}{Accept} = "application/json; chunked=true; version=2, application/json; version=2";
+	$ua;
 }
 
 sub sync_with_github {
