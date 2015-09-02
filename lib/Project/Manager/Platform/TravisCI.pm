@@ -14,7 +14,7 @@ has github_token => ( is => 'ro', required => 1 );
 sub _build_client {
 	my ($self) = @_;
 	my $ua = Net::Travis::API::Auth::GitHub->get_authorised_ua_for( $self->github_token );
-	$ua->{default_headers}{Accept} = "application/json; chunked=true; version=2, application/json; version=2";
+	$ua->{default_headers}{Accept} = "application/vnd.travis-ci.2+json, application/json; chunked=true; version=2, application/json; version=2";
 	$ua;
 }
 
