@@ -18,23 +18,35 @@ sub _build_client {
 	$ua;
 }
 
-sub sync_with_github {
+sub fetch_settings_for_github_repo {
+	# requires auth
+	my ($self, $repo_id) = @_;
+	$self->client->get("/repos/$repo_id/settings");
+}
+
+sub fetch_user_permissions {
+	# requires auth
+	my ($self) = @_;
+	$self->client->get("/users/permissions");
+}
+
+sub request_sync_with_github {
+	# requires auth
 	my ($self) = @_;
 	$self->client->post('/users/sync');
 }
 
-sub accounts {
+sub fetch_accounts {
+	# requires auth
 	my ($self) = @_;
-	$self->client->get('/accounts', {
-			headers => {
-					Accept => "application/json; chunked=true; version=2, application/json; version=2"
-				},
-		});
+	$self->client->get('/accounts');
 }
 
-sub repos_for_user {
-	my ($self) = @_;
-	$self->client->get('/users');
+sub fetch_users {
+	# requires auth
+	my ($self, $user_id) = @_;
+	my $endpoint = defined $user_id ? "/users/$user_id" : "/users";
+	$self->client->get($endpoint);
 }
 
 1;

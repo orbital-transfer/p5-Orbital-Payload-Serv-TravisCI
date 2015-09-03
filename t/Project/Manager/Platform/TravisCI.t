@@ -11,8 +11,8 @@ use Project::Manager::Config;
 my $token = Project::Manager::Config->github_token;
 my $travis = Project::Manager::Platform::TravisCI->new( github_token => $token );
 
-# "Accept: application/json; chunked=true; version=2, application/json; version=2"
-my $repos_for_user = $travis->repos_for_user;;
-use DDP; p $repos_for_user->content_json;
+use DDP; p $travis->fetch_users->content_json;
+#use DDP; p $travis->fetch_user_permissions->content_json;
+#use DDP; p $travis->fetch_settings_for_github_repo('5824968')->content_json;
 
-#use DDP; p $travis->accounts->content_json;
+#use DDP; p $travis->fetch_accounts->content_json;
