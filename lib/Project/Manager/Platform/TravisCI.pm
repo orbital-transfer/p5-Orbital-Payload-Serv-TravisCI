@@ -21,7 +21,9 @@ sub _build_client {
 sub fetch_settings_for_github_repo {
 	# requires auth
 	my ($self, $repo_id) = @_;
-	$self->client->get("/repos/$repo_id/settings");
+	Project::Manager::Platform::TravisCI::Settings->new(
+		net_travis_response => $self->client->get("/repos/$repo_id/settings")
+	);
 }
 
 sub fetch_user_permissions {
