@@ -1,4 +1,9 @@
 package Project::Manager::Platform::TravisCI;
+# TODO
+# - enable projects
+# - get/set settings (e.g., concurrent builds)
+# - show recent builds
+# - encrypt file
 
 use strict;
 use warnings;
