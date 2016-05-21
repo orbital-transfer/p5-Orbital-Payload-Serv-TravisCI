@@ -8,7 +8,7 @@ package Project::Manager::Platform::TravisCI;
 use strict;
 use warnings;
 
-use Net::Travis::API::Auth::GitHub;
+use Net::Travis::API::Auth::GitHub 0.002000;
 
 use Moo;
 
@@ -19,7 +19,6 @@ has github_token => ( is => 'ro', required => 1 );
 sub _build_client {
 	my ($self) = @_;
 	my $ua = Net::Travis::API::Auth::GitHub->get_authorised_ua_for( $self->github_token );
-	$ua->{default_headers}{Accept} = "application/vnd.travis-ci.2+json, application/json; chunked=true; version=2, application/json; version=2";
 	$ua;
 }
 
