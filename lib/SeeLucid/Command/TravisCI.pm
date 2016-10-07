@@ -1,4 +1,4 @@
-package Project::Manager::Command::TravisCI;
+package SeeLucid::Command::TravisCI;
 
 use strict;
 use warnings;

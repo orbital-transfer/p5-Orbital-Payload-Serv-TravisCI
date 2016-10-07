@@ -1,4 +1,4 @@
-package Project::Manager::Platform::TravisCI;
+package SeeLucid::Service::TravisCI;
 # TODO
 # - enable projects
 # - get/set settings (e.g., concurrent builds)
@@ -25,7 +25,7 @@ sub _build_client {
 sub fetch_settings_for_github_repo {
 	# requires auth
 	my ($self, $repo_id) = @_;
-	Project::Manager::Platform::TravisCI::Settings->new(
+	SeeLucid::Service::TravisCI::Settings->new(
 		net_travis_response => $self->client->get("/repos/$repo_id/settings")
 	);
 }
