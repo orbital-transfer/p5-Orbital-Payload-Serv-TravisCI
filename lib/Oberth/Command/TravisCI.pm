@@ -1,4 +1,4 @@
-package SeeLucid::Command::TravisCI;
+package Oberth::Command::TravisCI;
 
 use strict;
 use warnings;

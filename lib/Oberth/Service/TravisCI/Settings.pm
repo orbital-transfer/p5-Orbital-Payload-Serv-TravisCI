@@ -1,4 +1,4 @@
-package SeeLucid::Service::TravisCI::Settings;
+package Oberth::Service::TravisCI::Settings;
 
 use Moo;
 use MooX::TypeTiny;
@@ -7,7 +7,7 @@ use MooX::TypeTiny;
 
 =head1 SYNOPSIS
 
-  use SeeLucid::Service::TravisCI::Settings;
+  use Oberth::Service::TravisCI::Settings;
 
 =cut
 

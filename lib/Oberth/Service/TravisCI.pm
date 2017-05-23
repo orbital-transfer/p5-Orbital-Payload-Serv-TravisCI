@@ -1,4 +1,4 @@
-package SeeLucid::Service::TravisCI;
+package Oberth::Service::TravisCI;
 # TODO
 # - enable projects
 # - get/set settings (e.g., concurrent builds)
@@ -25,7 +25,7 @@ sub _build_client {
 sub fetch_settings_for_github_repo {
 	# requires auth
 	my ($self, $repo_id) = @_;
-	SeeLucid::Service::TravisCI::Settings->new(
+	Oberth::Service::TravisCI::Settings->new(
 		net_travis_response => $self->client->get("/repos/$repo_id/settings")
 	);
 }

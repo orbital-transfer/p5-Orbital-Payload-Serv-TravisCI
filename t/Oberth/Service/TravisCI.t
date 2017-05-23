@@ -5,11 +5,11 @@ use Modern::Perl;
 use Test::More tests => 1;
 use Test::Exception;
 
-use SeeLucid::Service::TravisCI;
-use SeeLucid::Config;
+use Oberth::Service::TravisCI;
+use Oberth::Config;
 
-my $token = SeeLucid::Config->github_token;
-my $travis = SeeLucid::Service::TravisCI->new( github_token => $token );
+my $token = Oberth::Config->github_token;
+my $travis = Oberth::Service::TravisCI->new( github_token => $token );
 
 #use DDP; p $travis->fetch_users->content_json;
 #use DDP; p $travis->fetch_user_permissions->content_json;
