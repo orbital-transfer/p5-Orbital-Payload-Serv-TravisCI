@@ -1,4 +1,6 @@
 package Oberth::Service::TravisCI;
+# ABSTRACT: Interface to TravisCI continuous integration service
+
 # TODO
 # - enable projects
 # - get/set settings (e.g., concurrent builds)
@@ -9,16 +11,29 @@ use strict;
 use warnings;
 
 use Net::Travis::API::Auth::GitHub 0.002000;
+use Net::Travis::API::UA;
 
 use Moo;
 
 has client => ( is => 'lazy' ); # _build_client
 
-has github_token => ( is => 'ro', required => 1 );
+has github_token => ( is => 'ro' );
+
+has token => ( is => 'lazy' );
+
+sub _build_token {
+	my $token_travis = `travis token --no-interactive`;
+	chomp $token_travis;
+
+	$token_travis;
+}
 
 sub _build_client {
 	my ($self) = @_;
-	my $ua = Net::Travis::API::Auth::GitHub->get_authorised_ua_for( $self->github_token );
+	my $ua = Net::Travis::API::UA->new(
+		authtokens => [ $self->token ]
+	);
+	#my $ua = Net::Travis::API::Auth::GitHub->get_authorised_ua_for( $self->github_token );
 	$ua;
 }
 

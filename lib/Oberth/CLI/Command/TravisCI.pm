@@ -1,7 +1,60 @@
-package Oberth::Command::TravisCI;
+use Oberth::Common::Setup;
+package Oberth::CLI::Command::TravisCI;
 
-use strict;
-use warnings;
+use Moo;
+use CLI::Osprey;
+
+use JSON::MaybeXS;
+use Oberth::VCS::Git;
+use Oberth::Service::GitHub;
+use Oberth::Service::GitHub::Repo;
+
+use Oberth::Service::TravisCI;
+use List::AllUtils qw(first);
+
+has travis_ci => ( is => 'lazy' );
+
+method _build_travis_ci() {
+	Oberth::Service::TravisCI->new;
+}
+
+subcommand sync => method() {
+	my $response = $self->travis_ci->client->put('/users/sync');
+	die "Could not sync" unless $response->success;
+};
+
+subcommand enable => method() {
+	my $gh = $self->github_repo_origin;
+	my $reponse = $self->travis_ci->client->get( '/hooks' );
+	my $hooks = $reponse->content_json;
+
+	my $repo_hook = first {
+		$_->{owner_name} eq $gh->namespace
+		&& $_->{name} eq $gh->name
+	} @{ $hooks->{hooks} };
+
+	die "Repo not found. Need to sync." unless $repo_hook;
+
+	if( ! $repo_hook->{active} ) {
+		my $enable_response = $self->_travis_put( '/hooks', {
+			hook => {
+				id => 0 + $repo_hook->{id},
+				active => JSON->true,
+			}
+		});
+		die "Could not enable" unless $enable_response->success;
+	}
+
+	say "$repo_hook->{owner_name}/$repo_hook->{name} is enabled";
+};
+
+sub _travis_put {
+	my ($self, $endpoint, $payload) = @_;
+	return $self->travis_ci->client->put( $endpoint, {
+		headers => { 'Content-Type' => 'application/json', },
+		content => encode_json($payload),
+	});
+}
 
 # TODO get subcommands from Travis-CI CLI client
 # <https://github.com/travis-ci/travis.rb>
@@ -12,7 +65,6 @@ accounts console endpoint login monitor raw report repos sync lint token
 whatsup whoami branches cache cancel disable enable encrypt encrypt-file env
 history init logs open pubkey requests restart settings setup show sshkey
 status
-
 /;
 
 
@@ -99,5 +151,7 @@ Repository Commands
 =back
 
 =cut
+
+with qw(Oberth::CLI::Command::Role::GitHubRepos);
 
 1;
