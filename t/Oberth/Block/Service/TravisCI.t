@@ -5,9 +5,9 @@ use Modern::Perl;
 use Test::More tests => 1;
 use Test::Exception;
 
-use Oberth::Service::TravisCI;
+use Oberth::Block::Service::TravisCI;
 
-my $travis = Oberth::Service::TravisCI->new();
+my $travis = Oberth::Block::Service::TravisCI->new();
 
 #use DDP; p $travis->fetch_users->content_json;
 #use DDP; p $travis->fetch_user_permissions->content_json;

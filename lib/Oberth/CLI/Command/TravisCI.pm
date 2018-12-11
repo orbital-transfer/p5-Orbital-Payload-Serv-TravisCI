@@ -1,21 +1,21 @@
-use Oberth::Common::Setup;
+use Oberth::Manoeuvre::Common::Setup;
 package Oberth::CLI::Command::TravisCI;
 
 use Moo;
 use CLI::Osprey;
 
 use JSON::MaybeXS;
-use Oberth::VCS::Git;
-use Oberth::Service::GitHub;
-use Oberth::Service::GitHub::Repo;
+use Oberth::Block::VCS::Git;
+use Oberth::Block::Service::GitHub;
+use Oberth::Block::Service::GitHub::Repo;
 
-use Oberth::Service::TravisCI;
+use Oberth::Block::Service::TravisCI;
 use List::AllUtils qw(first);
 
 has travis_ci => ( is => 'lazy' );
 
 method _build_travis_ci() {
-	Oberth::Service::TravisCI->new;
+	Oberth::Block::Service::TravisCI->new;
 }
 
 subcommand sync => method() {

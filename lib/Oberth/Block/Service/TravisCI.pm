@@ -1,4 +1,4 @@
-package Oberth::Service::TravisCI;
+package Oberth::Block::Service::TravisCI;
 # ABSTRACT: Interface to TravisCI continuous integration service
 
 # TODO
@@ -40,7 +40,7 @@ sub _build_client {
 sub fetch_settings_for_github_repo {
 	# requires auth
 	my ($self, $repo_id) = @_;
-	Oberth::Service::TravisCI::Settings->new(
+	Oberth::Block::Service::TravisCI::Settings->new(
 		net_travis_response => $self->client->get("/repos/$repo_id/settings")
 	);
 }
