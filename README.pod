@@ -4,7 +4,7 @@
 
 =head1 NAME
 
-Oberth::Service::TravisCI - Interface to TravisCI continuous integration service
+Oberth::Block::Service::TravisCI - Interface to TravisCI continuous integration service
 
 =head1 VERSION
 
