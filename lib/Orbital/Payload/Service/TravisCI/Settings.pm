@@ -1,4 +1,4 @@
-package Oberth::Block::Service::TravisCI::Settings;
+package Orbital::Payload::Service::TravisCI::Settings;
 
 use Moo;
 use MooX::TypeTiny;
@@ -7,7 +7,7 @@ use MooX::TypeTiny;
 
 =head1 SYNOPSIS
 
-  use Oberth::Block::Service::TravisCI::Settings;
+  use Orbital::Payload::Service::TravisCI::Settings;
 
 =cut
 

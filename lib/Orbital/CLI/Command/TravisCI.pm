@@ -1,21 +1,21 @@
-use Oberth::Manoeuvre::Common::Setup;
-package Oberth::CLI::Command::TravisCI;
+use Orbital::Transfer::Common::Setup;
+package Orbital::CLI::Command::TravisCI;
 
 use Moo;
 use CLI::Osprey;
 
 use JSON::MaybeXS;
-use Oberth::Block::VCS::Git;
-use Oberth::Block::Service::GitHub;
-use Oberth::Block::Service::GitHub::Repo;
+use Orbital::Payload::VCS::Git;
+use Orbital::Payload::Service::GitHub;
+use Orbital::Payload::Service::GitHub::Repo;
 
-use Oberth::Block::Service::TravisCI;
+use Orbital::Payload::Service::TravisCI;
 use List::AllUtils qw(first);
 
 has travis_ci => ( is => 'lazy' );
 
 method _build_travis_ci() {
-	Oberth::Block::Service::TravisCI->new;
+	Orbital::Payload::Service::TravisCI->new;
 }
 
 subcommand sync => method() {
@@ -152,6 +152,6 @@ Repository Commands
 
 =cut
 
-with qw(Oberth::CLI::Command::Role::GitHubRepos);
+with qw(Orbital::CLI::Command::Role::GitHubRepos);
 
 1;
