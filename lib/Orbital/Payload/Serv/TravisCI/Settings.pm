@@ -1,4 +1,4 @@
-package Orbital::Payload::Service::TravisCI::Settings;
+package Orbital::Payload::Serv::TravisCI::Settings;
 
 use Moo;
 use MooX::TypeTiny;
@@ -7,7 +7,7 @@ use MooX::TypeTiny;
 
 =head1 SYNOPSIS
 
-  use Orbital::Payload::Service::TravisCI::Settings;
+  use Orbital::Payload::Serv::TravisCI::Settings;
 
 =cut
 

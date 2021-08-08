@@ -4,7 +4,7 @@
 
 =head1 NAME
 
-Orbital::Payload::Service::TravisCI - Interface to TravisCI continuous integration service
+Orbital::Payload::Serv::TravisCI - Interface to TravisCI continuous integration service
 
 =head1 VERSION
 

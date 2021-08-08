@@ -6,16 +6,16 @@ use CLI::Osprey;
 
 use JSON::MaybeXS;
 use Orbital::Payload::VCS::Git;
-use Orbital::Payload::Service::GitHub;
-use Orbital::Payload::Service::GitHub::Repo;
+use Orbital::Payload::Serv::GitHub;
+use Orbital::Payload::Serv::GitHub::Repo;
 
-use Orbital::Payload::Service::TravisCI;
+use Orbital::Payload::Serv::TravisCI;
 use List::AllUtils qw(first);
 
 has travis_ci => ( is => 'lazy' );
 
 method _build_travis_ci() {
-	Orbital::Payload::Service::TravisCI->new;
+	Orbital::Payload::Serv::TravisCI->new;
 }
 
 subcommand sync => method() {

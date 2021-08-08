@@ -5,9 +5,9 @@ use Modern::Perl;
 use Test::More tests => 1;
 use Test::Exception;
 
-use Orbital::Payload::Service::TravisCI;
+use Orbital::Payload::Serv::TravisCI;
 
-my $travis = Orbital::Payload::Service::TravisCI->new();
+my $travis = Orbital::Payload::Serv::TravisCI->new();
 
 #use DDP; p $travis->fetch_users->content_json;
 #use DDP; p $travis->fetch_user_permissions->content_json;
