@@ -1,6 +1,7 @@
 use Orbital::Transfer::Common::Setup;
 package Orbital::CLI::Command::TravisCI;
 
+use Orbital::Transfer::Common::Setup;
 use Moo;
 use CLI::Osprey;
 

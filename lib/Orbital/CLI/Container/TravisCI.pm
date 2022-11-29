@@ -2,6 +2,8 @@ use Orbital::Transfer::Common::Setup;
 package Orbital::CLI::Container::TravisCI;
 # ABSTRACT: Container for TravisCI
 
+use Orbital::Transfer::Common::Setup;
+
 method commands() {
 	return +{
 		'service/travis-ci' => 'Orbital::CLI::Command::TravisCI',
