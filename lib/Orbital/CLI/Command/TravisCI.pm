@@ -45,7 +45,7 @@ subcommand enable => method() {
 		die "Could not enable" unless $enable_response->success;
 	}
 
-	say "$repo_hook->{owner_name}/$repo_hook->{name} is enabled";
+	print "$repo_hook->{owner_name}/$repo_hook->{name} is enabled\n";
 };
 
 sub _travis_put {
