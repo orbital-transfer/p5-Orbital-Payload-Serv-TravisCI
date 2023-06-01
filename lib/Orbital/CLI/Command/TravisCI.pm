@@ -11,7 +11,7 @@ use Orbital::Payload::Serv::GitHub;
 use Orbital::Payload::Serv::GitHub::Repo;
 
 use Orbital::Payload::Serv::TravisCI;
-use List::AllUtils qw(first);
+use List::Util::MaybeXS qw(first);
 
 has travis_ci => ( is => 'lazy' );
 
